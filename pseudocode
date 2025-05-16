@@ -1,0 +1,86 @@
+FUNCTION trigonometry_calculator
+    DISPLAY "--- Trigonometry Calculator ---"
+    LOOP FOREVER
+        DISPLAY function menu (sin, cos, tan, asin, acos, atan, back)
+        INPUT choice
+        IF choice == '7'
+            BREAK LOOP
+        IF choice in ['1', '2', '3', '4', '5', '6']
+            INPUT angle in degrees
+            radians = convert angle to radians
+            IF choice == '1'
+                result = sine(radians)
+                DISPLAY result
+            ELSE IF choice == '2'
+                result = cosine(radians)
+                DISPLAY result
+            ELSE IF choice == '3'
+                result = tangent(radians)
+                DISPLAY result
+            ELSE IF choice == '4'
+                result = arcsine(sine(radians))
+                DISPLAY result in degrees
+            ELSE IF choice == '5'
+                result = arccosine(cosine(radians))
+                DISPLAY result in degrees
+            ELSE IF choice == '6'
+                result = arctangent(tangent(radians))
+                DISPLAY result in degrees
+        ELSE
+            DISPLAY "Invalid choice"
+
+FUNCTION scientific_calculator
+    DISPLAY "--- Scientific Calculator ---"
+    LOOP FOREVER
+        DISPLAY function menu (add, subtract, multiply, divide, power, sqrt, back)
+        INPUT choice
+        IF choice == '7'
+            BREAK LOOP
+        IF choice in ['1', '2', '3', '4', '5', '6']
+            IF choice in ['1', '2', '3', '4', '5']
+                INPUT num1
+                INPUT num2
+                IF choice == '1'
+                    result = num1 + num2
+                    DISPLAY result
+                ELSE IF choice == '2'
+                    result = num1 - num2
+                    DISPLAY result
+                ELSE IF choice == '3'
+                    result = num1 * num2
+                    DISPLAY result
+                ELSE IF choice == '4'
+                    IF num2 != 0
+                        result = num1 / num2
+                        DISPLAY result
+                    ELSE
+                        DISPLAY "Division by zero error"
+                ELSE IF choice == '5'
+                    result = num1 ^ num2
+                    DISPLAY result
+            ELSE IF choice == '6'
+                INPUT num
+                IF num >= 0
+                    result = sqrt(num)
+                    DISPLAY result
+                ELSE
+                    DISPLAY "Cannot take sqrt of negative number"
+        ELSE
+            DISPLAY "Invalid choice"
+
+FUNCTION main_menu
+    LOOP FOREVER
+        DISPLAY main menu (trigonometry, scientific, exit)
+        INPUT choice
+        IF choice == '1'
+            CALL trigonometry_calculator
+        ELSE IF choice == '2'
+            CALL scientific_calculator
+        ELSE IF choice == '3'
+            DISPLAY "Exiting"
+            BREAK LOOP
+        ELSE
+            DISPLAY "Invalid choice"
+
+MAIN
+    CALL main_menu
